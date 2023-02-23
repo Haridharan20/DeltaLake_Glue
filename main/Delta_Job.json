@@ -1,0 +1,40 @@
+{
+  "name" : "Delta_Job",
+  "description" : "",
+  "role" : "arn:aws:iam::533387313095:role/service-role/AWSGlueServiceRole-hari",
+  "executionProperty" : {
+    "maxConcurrentRuns" : 1
+  },
+  "command" : {
+    "name" : "glueetl",
+    "scriptLocation" : "s3://aws-glue-assets-533387313095-us-east-1/scripts/Delta_Job.py",
+    "pythonVersion" : "3"
+  },
+  "defaultArguments" : {
+    "--enable-metrics" : "true",
+    "--enable-spark-ui" : "true",
+    "--spark-event-logs-path" : "s3://aws-glue-assets-533387313095-us-east-1/sparkHistoryLogs/",
+    "--enable-job-insights" : "true",
+    "--conf" : "spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension --conf spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog",
+    "--enable-glue-datacatalog" : "true",
+    "--enable-continuous-cloudwatch-log" : "true",
+    "--job-bookmark-option" : "job-bookmark-disable",
+    "--datalake-formats" : "delta",
+    "--job-language" : "python",
+    "--TempDir" : "s3://aws-glue-assets-533387313095-us-east-1/temporary/"
+  },
+  "maxRetries" : 0,
+  "allocatedCapacity" : 2,
+  "timeout" : 2880,
+  "maxCapacity" : 2.0,
+  "glueVersion" : "3.0",
+  "numberOfWorkers" : 2,
+  "workerType" : "G.1X",
+  "executionClass" : "STANDARD",
+  "sourceControlDetails" : {
+    "provider" : "GITHUB",
+    "repository" : "DeltaLake_Glue",
+    "branch" : "main",
+    "folder" : "main"
+  }
+}
