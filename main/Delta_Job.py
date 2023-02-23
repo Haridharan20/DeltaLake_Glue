@@ -88,6 +88,7 @@ def select_data():
     #     print(i)
         
 def vacuum():
+    # vacuum(0) it clears the old files immediately after the any changes to delta table
     deltaTable.vacuum(0)
 
 if __name__ == '__main__':
