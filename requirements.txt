@@ -1,0 +1,4 @@
+boto3
+pandas
+numpy
+delta-spark==0.1.0
